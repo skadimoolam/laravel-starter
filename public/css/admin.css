@@ -1,0 +1,14 @@
+table.table.table-fullwidth td, table.table.table-fullwidth th {
+  white-space: nowrap;
+}
+
+.navbar a.nav-link.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.bg-lightred { background-color: #ffd1d1; }
+.bg-lightgreen { background-color: #d1ffe1; }
+.bg-lightgray { background-color: #b5b5b5; }
+
+.select2 { width: 100% !important; }

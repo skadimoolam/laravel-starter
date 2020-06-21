@@ -1,0 +1,24 @@
+html,
+body {
+  margin: 0;
+  font-size: 100%;
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.font-lato {
+  font-family: 'Lato', sans-serif !important;
+}
+
+.bg-brandred {
+  background-color: #ff2d20;
+}
+
+.text-brandred {
+  color: #ff2d20;
+}

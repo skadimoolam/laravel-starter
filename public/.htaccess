@@ -1,21 +1,44 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
+  <IfModule mod_negotiation.c>
+      Options -MultiViews -Indexes
+  </IfModule>
 
-    RewriteEngine On
+  RewriteEngine On
 
-    # Handle Authorization Header
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  # Handle Authorization Header
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+  # Redirect Trailing Slashes If Not A Folder...
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+  # Handle Front Controller...
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ index.php [L]
+
+  # RewriteCond %{HTTP_HOST} ^www.efarmerdairy.com$ [NC]
+  # RewriteRule ^(.*)$ https://efarmerdairy.com/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+<IfModule mod_headers.c>
+  SetEnvIf Origin "http(s)?://(www\.)?(localhost|localhost:1234|localhost:8000|localhost:5000|localhost:8080)$" AccessControlAllowOrigin=$0
+  Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+  Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  Header set Access-Control-Allow-Methods "POST,GET,OPTION,PUT,DELETE"
+  Header merge Vary Origin
+
+  <filesMatch ".(jpg|jpeg|png|gif|ico)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </filesMatch>
+
+  <filesMatch ".(css|js)$">
+    Header set Cache-Control "max-age=604800, public"
+  </filesMatch>
 </IfModule>
