@@ -48,7 +48,7 @@
     </script>
     <script async src='https://www.google-analytics.com/analytics_debug.js'></script>
   @else
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.3.4/tailwind.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@latest/dist/tailwind.min.css" crossorigin="anonymous">
     <meta name="robots" content="index, follow" />
 
     <script>
